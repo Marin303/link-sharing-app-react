@@ -20,7 +20,7 @@ const Nav = () => {
         </svg>
         <h1 className="">Link sharing App</h1>
       </div>
-      <div className="">
+      <div>
         <button className="btn-default">Links</button>
         <button className="btn-default ml-2">Profile Details</button>
       </div>

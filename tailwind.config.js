@@ -5,7 +5,11 @@ module.exports = {
     "./src/Components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'iphone-image': "url('/src/Images/iphone.png')",
+      },
+    },
   },
   plugins: [],
 };
