@@ -7,7 +7,10 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'iphone-image': "url('/src/Images/iphone.png')",
+        "iphone-image": "url('/src/Images/iphone.png')",
+      },
+      colors: {
+        "empty": "#eee",
       },
     },
   },
