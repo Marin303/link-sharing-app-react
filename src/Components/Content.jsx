@@ -1,44 +1,27 @@
 import React from "react";
 
 const Content = ({ forms }) => {
+  const platformColors = {
+    github: "bg-black",
+    youtube: "bg-red-600",
+    linkedin: "bg-blue-900",
+    facebook: "bg-yellow-500",
+    twitter: "bg-blue-400",
+  };
+
   const renderValues = () => {
     const valueDivs = forms.map((form, index) => {
-      const { platform, link } = form;
-      let backgroundColor = "";
-
-      if (platform === "github" || link.includes("https://github.com/")) {
-        backgroundColor = "bg-black";
-      } else if (
-        platform === "youtube" ||
-        link.includes("https://youtube.com/")
-      ) {
-        backgroundColor = "bg-red-600";
-      } else if (
-        platform === "linkedin" ||
-        link.includes("https://linkedin.com/")
-      ) {
-        backgroundColor = "bg-blue-900";
-      } else if (
-        platform === "facebook" ||
-        link.includes("https://facebook.com/")
-      ) {
-        backgroundColor = "bg-yellow-500";
-      } else if (
-        platform === "twitter" ||
-        link.includes("https://twitter.com/")
-      ) {
-        backgroundColor = "bg-blue-400";
-      }
+      const { platform } = form;
+      const backgroundColor = platformColors[platform] || "";
 
       return (
         <div
           key={index}
-          className={`
-          rounded-lg p-1 h-6 
-          flex 
-          items-center 
-          justify-center 
-          ${backgroundColor}`}>
+          className={
+            `rounded-lg p-1 h-6 flex items-center justify-center 
+            ${backgroundColor}
+            `}
+        >
           <p className="text-white">{platform}</p>
         </div>
       );
@@ -46,7 +29,7 @@ const Content = ({ forms }) => {
 
     const emptyDivs = Array.from(
       { length: 5 - valueDivs.length },
-       (_, index) => (
+      (_, index) => (
       <div key={`empty-${index}`} className="bg-empty rounded-lg p-1 h-6"></div>
     ));
 
@@ -54,12 +37,13 @@ const Content = ({ forms }) => {
   };
 
   return (
-    <aside className="
+    <aside
+      className="
     max-h-[600px] min-h-[600px] min-w-[300px] 
     bg-iphone-image bg-no-repeat bg-center bg-cover 
-    relative flex flex-col justify-center 
-    items-center bg-white rounded-lg m-2">
-      
+    relative flex flex-col justify-center items-center 
+    bg-white rounded-lg m-2 links"
+    >
       <div className="mb-3 rounded-full bg-empty w-[100px] h-[100px]">
         Profile Picture
       </div>

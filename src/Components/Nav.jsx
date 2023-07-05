@@ -1,6 +1,6 @@
 import React from "react";
 
-const Nav = () => {
+const Nav = ({ activeSection, onSectionChange }) => {
   return (
     <div className="bg-white flex items-center justify-between p-3">
       <div className="flex">
@@ -21,8 +21,20 @@ const Nav = () => {
         <h1 className="">Link sharing App</h1>
       </div>
       <div>
-        <button className="btn-default">Links</button>
-        <button className="btn-default ml-2">Profile Details</button>
+        <button
+          className={`btn-default ${activeSection === "links" ? "active" : ""}`}
+          onClick={() => onSectionChange("links")}
+        >
+          Links
+        </button>
+        <button
+          className={`btn-default ml-2 ${
+            activeSection === "profile" ? "active" : ""
+          }`}
+          onClick={() => onSectionChange("profile")}
+        >
+          Profile Details
+        </button>
       </div>
       <button className="btn-preview">Preview</button>
     </div>
