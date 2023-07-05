@@ -10,7 +10,9 @@ const CustomLinks = ({ onFormChange }) => {
   };
 
   const removeForm = (index) => {
-    setForms(forms.filter((_, i) => i !== index));
+    const updatedForms = forms.filter((_, i) => i !== index);
+    setForms(updatedForms);
+    onFormChange(updatedForms);
   };
 
   const handleFormChange = (event, index, field) => {
