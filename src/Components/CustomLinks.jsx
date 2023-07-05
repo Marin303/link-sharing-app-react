@@ -17,7 +17,7 @@ const CustomLinks = ({ onFormChange }) => {
     const updatedForms = [...forms];
     updatedForms[index][field] = event.target.value;
     setForms(updatedForms);
-    onFormChange(updatedForms[index].link, updatedForms[index].platform);
+    onFormChange(updatedForms);
   };
 
   const renderForms = () => {
