@@ -2,7 +2,7 @@ import React from "react";
 
 const Content = ({ forms }) => {
   const renderValues = () => {
-    return forms.map((form, index) => {
+    const valueDivs = forms.map((form, index) => {
       const { platform, link } = form;
       let backgroundColor = "";
 
@@ -31,15 +31,35 @@ const Content = ({ forms }) => {
       }
 
       return (
-        <div key={index} className={`rounded-lg p-1 h-6 ${backgroundColor}`}>
-          {platform}
+        <div
+          key={index}
+          className={`
+          rounded-lg p-1 h-6 
+          flex 
+          items-center 
+          justify-center 
+          ${backgroundColor}`}>
+          <p className="text-white">{platform}</p>
         </div>
       );
     });
+
+    const emptyDivs = Array.from(
+      { length: 5 - valueDivs.length },
+       (_, index) => (
+      <div key={`empty-${index}`} className="bg-empty rounded-lg p-1 h-6"></div>
+    ));
+
+    return [...valueDivs, ...emptyDivs];
   };
 
   return (
-    <aside className="max-h-[600px] min-h-[600px] min-w-[300px] bg-iphone-image bg-no-repeat bg-center bg-cover relative flex flex-col justify-center items-center bg-white rounded-lg m-2">
+    <aside className="
+    max-h-[600px] min-h-[600px] min-w-[300px] 
+    bg-iphone-image bg-no-repeat bg-center bg-cover 
+    relative flex flex-col justify-center 
+    items-center bg-white rounded-lg m-2">
+      
       <div className="mb-3 rounded-full bg-empty w-[100px] h-[100px]">
         Profile Picture
       </div>
