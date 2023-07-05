@@ -1,7 +1,35 @@
 import React from "react";
 
-const Content = () => {
-  const rightArrow = (
+const Content = ({ link, platform }) => {
+  const renderValues = () => {
+    if (platform === "github" && link.includes("https://github.com/")) {
+      return (
+        <div className="bg-black rounded-lg p-1 h-6">GitHub</div>
+      );
+    } else if (platform === "youtube" && link.includes("https://youtube.com/")) {
+      return (
+        <div className="bg-red-600 rounded-lg p-1 h-6">YouTube</div>
+      );
+    } else if (platform === "linkedin" && link.includes("https://linkedin.com/")) {
+      return (
+        <div className="bg-blue-900 rounded-lg p-1 h-6">LinkedIn</div>
+      );
+    } else if (platform === "facebook" && link.includes("https://facebook.com/")) {
+      return (
+        <div className="bg-yellow-500 rounded-lg p-1 h-6">Facebook</div>
+      );
+    } else if (platform === "twitter" && link.includes("https://twitter.com/")) {
+      return (
+        <div className="bg-blue-400 rounded-lg p-1 h-6">Twitter</div>
+      );
+    } else {
+      return (
+        <div className="bg-empty rounded-lg p-1 h-6">{platform}</div>
+      );
+    }
+  };
+
+/*   const rightArrow = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -16,7 +44,7 @@ const Content = () => {
         d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
       />
     </svg>
-  );
+  ); */
 
   return (
     <aside
@@ -36,23 +64,19 @@ const Content = () => {
         rounded-lg
         m-2"
     >
-      <div className="mb-4 rounded-full bg-empty w-[100px] h-[100px]">
+      <div className="mb-3 rounded-full bg-empty w-[100px] h-[100px]">
         Profile Picture
       </div>
 
-      <div className="mb-4 bg-empty rounded-lg p-2">Name</div>
-      <div className=" bg-empty rounded-lg p-2">Email</div>
-      <div className="w-[200px] mt-4 mb-4 flex flex-col gap-2 text-white rounded-lg">
-        <div className="bg-black rounded-lg flex items-center">
-          <div className="flex-grow text-left pl-2">
-            GitHub
-          </div>
-          {rightArrow}
-        </div>
-        <div className="bg-red-600 rounded-lg">YouTube</div>
-        <div className="bg-blue-900 rounded-lg">LinkedIn</div>
-        <div className="bg-empty rounded-lg">em</div>
-        <div className="bg-empty rounded-lg">em</div>
+      <div className="mb-4 bg-empty rounded-lg p-1">Name</div>
+      <div className=" bg-empty rounded-lg p-1">Email</div>
+      <div className="w-[200px] mt-2 mb-4 flex flex-col gap-2 text-white rounded-lg">
+        {renderValues()}
+        <div className=" bg-empty rounded-lg p-1 h-6"></div>
+        <div className=" bg-empty rounded-lg p-1 h-6"></div>
+        <div className=" bg-empty rounded-lg p-1 h-6"></div>
+        <div className=" bg-empty rounded-lg p-1 h-6"></div>
+        <div className=" bg-empty rounded-lg p-1 h-6"></div>
       </div>
     </aside>
   );

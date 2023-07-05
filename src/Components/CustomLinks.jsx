@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CustomLinks = () => {
+const CustomLinks = ({ onFormChange }) => {
   const [forms, setForms] = useState([{ platform: "", link: "" }]);
 
   const createNewForm = () => {
@@ -17,6 +17,7 @@ const CustomLinks = () => {
     const updatedForms = [...forms];
     updatedForms[index][field] = event.target.value;
     setForms(updatedForms);
+    onFormChange(updatedForms[index].link, updatedForms[index].platform);
   };
 
   const renderForms = () => {
