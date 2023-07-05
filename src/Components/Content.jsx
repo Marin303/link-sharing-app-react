@@ -42,7 +42,7 @@ const Content = ({ forms }) => {
     max-h-[600px] min-h-[600px] min-w-[300px] 
     bg-iphone-image bg-no-repeat bg-center bg-cover 
     relative flex flex-col justify-center items-center 
-    bg-white rounded-lg m-2"
+    bg-white rounded-lg m-2 links"
     >
       <div className="mb-3 rounded-full bg-empty w-[100px] h-[100px]">
         Profile Picture
