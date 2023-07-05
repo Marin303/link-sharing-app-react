@@ -5,9 +5,9 @@ import CustomLinks from "./CustomLinks";
 
 const Layout = () => {
   return (
-    <div className="bg-blue-200 text-center h-screen">
+    <div className="bg-blue-200 text-center min-h-screen">
       <Nav />
-      <div className="flex justify-between">
+      <div className="flex justify-between ">
         <Content />
         <CustomLinks />
       </div>
