@@ -1,6 +1,6 @@
 import React from "react";
 
-const Content = ({ forms }) => {
+const Content = ({ forms, profilePicture  }) => {
   const platformColors = {
     github: "bg-black",
     youtube: "bg-red-600",
@@ -45,7 +45,14 @@ const Content = ({ forms }) => {
     bg-white rounded-lg m-2 links"
     >
       <div className="mb-3 rounded-full bg-empty w-[100px] h-[100px]">
-        Profile Picture
+        
+        {profilePicture && (
+          <img
+            className="rounded-full w-full h-full"
+            alt="Profile Pic"
+            src={URL.createObjectURL(profilePicture)}
+          />
+        )}
       </div>
 
       <div className="mb-4 bg-empty rounded-lg p-1">Name</div>

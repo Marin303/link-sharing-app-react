@@ -1,16 +1,31 @@
 import React, { useState } from "react";
 
-const Profile = () => {
+
+const Profile = ({handleImageSelection}) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const handleImageChange = (event) => {
-    setSelectedImage(event.target.files[0]);
+    const image = event.target.files[0]
+    setSelectedImage(image);
+    handleImageSelection(image)
   };
-
+  const handleImageRemove = () =>{
+    setSelectedImage(null)
+    handleImageSelection(null)
+  }
   return (
     <>
-      <section className="bg-white text-black text-left m-2 w-full rounded-lg p-4 profile">
-        <div className="border-solid border-2 border-blue-500 w-32 h-32 relative rounded-lg flex justify-center items-center">
+      <section className="
+           bg-white text-black 
+           text-left m-2 p-4 
+           w-full rounded-lg ">
+        <div className="
+           border-solid border-2 border-blue-500 
+           w-32 h-32 
+           relative 
+           rounded-lg 
+           flex justify-center 
+           items-center">
           {selectedImage && (
             <img
               className="rounded-lg absolute w-full h-full"
@@ -26,7 +41,7 @@ const Profile = () => {
           </label>
           {selectedImage && (
             <button
-              onClick={() => setSelectedImage(null)}
+              onClick={handleImageRemove}
               className="bg-red-500 text-white p-0.5 rounded-lg absolute bottom-2 right-2"
             >
               Remove
