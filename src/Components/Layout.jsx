@@ -7,7 +7,7 @@ import Profile from "./Profile";
 const Layout = () => {
   const [forms, setForms] = useState([{ platform: "", link: "" }]);
   const [active, setActive] = useState("links");
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [profileData, setProfileData] = useState(null);
 
   const handleFormChange = (updatedForms) => {
     setForms(updatedForms);
@@ -17,19 +17,18 @@ const Layout = () => {
     setActive(section);
   };
 
-  const handleImageSelection = (image) => {
-    setSelectedImage(image);
+  const handleFormDataChange = (data) => {
+    setProfileData(data);
   };
-
   return (
     <div className="bg-blue-200 text-center min-h-screen">
       <Nav activeSection={active} onSectionChange={handleSectionChange} />
       <div className="flex justify-between">
-        <Content forms={forms} profilePicture={selectedImage} />
+        <Content forms={forms} profileData={profileData} />
         {active === "links" ? (
           <CustomLinks onFormChange={handleFormChange} />
         ) : active === "profile" ? (
-          <Profile handleImageSelection={handleImageSelection} />
+          <Profile handleFormDataChange={handleFormDataChange} />
         ) : null}
       </div>
     </div>

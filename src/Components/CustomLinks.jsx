@@ -44,7 +44,6 @@ const CustomLinks = ({ onFormChange }) => {
         <p>Link</p>
         <input
           type="text"
-          className="px-2 py-1 border border-gray-300 rounded-lg w-full"
           value={form.link}
           onChange={(event) => handleFormChange(event, index, "link")}
         />

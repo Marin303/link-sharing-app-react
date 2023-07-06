@@ -1,6 +1,6 @@
 import React from "react";
 
-const Content = ({ forms, profilePicture  }) => {
+const Content = ({ forms, profileData }) => {
   const platformColors = {
     github: "bg-black",
     youtube: "bg-red-600",
@@ -17,8 +17,7 @@ const Content = ({ forms, profilePicture  }) => {
       return (
         <div
           key={index}
-          className={
-            `rounded-lg p-1 h-6 flex items-center justify-center 
+          className={`rounded-lg p-1 h-6 flex items-center justify-center 
             ${backgroundColor}
             `}
         >
@@ -30,8 +29,12 @@ const Content = ({ forms, profilePicture  }) => {
     const emptyDivs = Array.from(
       { length: 5 - valueDivs.length },
       (_, index) => (
-      <div key={`empty-${index}`} className="bg-empty rounded-lg p-1 h-6"></div>
-    ));
+        <div
+          key={`empty-${index}`}
+          className="bg-empty rounded-lg p-1 h-6"
+        ></div>
+      )
+    );
 
     return [...valueDivs, ...emptyDivs];
   };
@@ -40,23 +43,29 @@ const Content = ({ forms, profilePicture  }) => {
     <aside
       className="
     max-h-[600px] min-h-[600px] min-w-[300px] 
-    bg-iphone-image bg-no-repeat bg-center bg-cover 
+    bg-iphone-image 
+    bg-no-repeat 
+    bg-center 
+    bg-cover 
     relative flex flex-col justify-center items-center 
-    bg-white rounded-lg m-2 links"
+    bg-white rounded-lg m-2 links
+    "
     >
       <div className="mb-3 rounded-full bg-empty w-[100px] h-[100px]">
-        
-        {profilePicture && (
+        {profileData?.image && (
           <img
             className="rounded-full w-full h-full"
             alt="Profile Pic"
-            src={URL.createObjectURL(profilePicture)}
+            src={URL.createObjectURL(profileData?.image)}
           />
         )}
       </div>
-
-      <div className="mb-4 bg-empty rounded-lg p-1">Name</div>
-      <div className=" bg-empty rounded-lg p-1">Email</div>
+        <div className="mb-4 bg-empty rounded-lg p-1 min-w-[50%] min-h-[24px] break-words">
+          {profileData?.firstName} {profileData?.lastName}
+        </div>
+        <div className=" bg-empty rounded-lg p-1 min-w-[50%] min-h-[24px] break-words">
+          {profileData?.email}
+        </div>
       <div className="w-[200px] mt-2 mb-4 flex flex-col gap-2 text-white rounded-lg">
         {renderValues()}
       </div>
