@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+
 const CustomLinks = ({ onFormChange }) => {
   const [forms, setForms] = useState([{ platform: "", link: "" }]);
+  const [linkError, setLinkError] = useState("");
 
   const createNewForm = () => {
     if (forms.length < 5) {
@@ -17,6 +19,13 @@ const CustomLinks = ({ onFormChange }) => {
   const handleFormChange = (event, index, field) => {
     const updatedForms = [...forms];
     updatedForms[index][field] = event.target.value;
+
+    if (field === "link" && !event.target.value.startsWith("https://")) {
+      setLinkError("Hey, your value should start with https://");
+    } else {
+      setLinkError("");
+    }
+
     setForms(updatedForms);
     onFormChange(updatedForms);
   };
@@ -42,12 +51,14 @@ const CustomLinks = ({ onFormChange }) => {
           <option value="twitter">Twitter</option>
         </select>
         <p>Link</p>
-        <input
-          type="text"
-          className="px-2 py-1 border border-gray-300 rounded-lg w-full"
-          value={form.link}
-          onChange={(event) => handleFormChange(event, index, "link")}
-        />
+        <div>
+          <input
+            type="text"
+            value={form.link}
+            onChange={(event) => handleFormChange(event, index, "link")}
+          />
+          {linkError && <p className="text-red-500">{linkError}</p>}
+        </div>
       </div>
     ));
   };
