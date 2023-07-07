@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Nav = ({ activeSection, onSectionChange }) => {
   return (
     <div className="bg-white flex items-center justify-between p-3">
@@ -22,21 +22,26 @@ const Nav = ({ activeSection, onSectionChange }) => {
       </div>
       <div>
         <button
-          className={`btn-default ${activeSection === "links" ? "active" : ""}`}
+          className={`btn-default ${
+            activeSection === "links" ? "active" : ""}
+                    `}
           onClick={() => onSectionChange("links")}
         >
           Links
         </button>
         <button
           className={`btn-default ml-2 ${
-            activeSection === "profile" ? "active" : ""
-          }`}
+            activeSection === "profile" ? "active" : ""}
+                  `}
           onClick={() => onSectionChange("profile")}
         >
           Profile Details
         </button>
       </div>
-      <button className="btn-preview">Preview</button>
+      <button
+      className="btn-preview">
+      <Link to="/preview">Preview</Link>
+    </button>
     </div>
   );
 };

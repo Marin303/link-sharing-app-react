@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import Content from "./Content";
 import CustomLinks from "./CustomLinks";
 import Profile from "./Profile";
+import Preview from "../Pages/Preview";
 
 const Layout = () => {
   const [forms, setForms] = useState([{ platform: "", link: "" }]);
@@ -20,6 +21,7 @@ const Layout = () => {
   const handleFormDataChange = (data) => {
     setProfileData(data);
   };
+  
   return (
     <div className="bg-blue-200 text-center min-h-screen">
       <Nav activeSection={active} onSectionChange={handleSectionChange} />
@@ -31,6 +33,9 @@ const Layout = () => {
           <Profile handleFormDataChange={handleFormDataChange} />
         ) : null}
       </div>
+      {active === "preview" ? (
+      <Preview forms={forms} profileData={profileData} />
+      ): null}
     </div>
   );
 };
