@@ -10,8 +10,9 @@ const Content = ({ forms, profileData }) => {
   };
 
   const renderValues = () => {
-    const valueDivs = forms.map((form, index) => {
-      const { platform } = form;
+    const valueDivs = forms
+    .map((form, index) => {
+      const { platform, link } = form;
       const backgroundColor = platformColors[platform] || "";
 
       return (
@@ -21,7 +22,7 @@ const Content = ({ forms, profileData }) => {
             ${backgroundColor}
             `}
         >
-          <p className="text-white">{platform}</p>
+          <a href={link} className="text-white" target="_blank" rel="noreferrer">{platform}</a>
         </div>
       );
     });

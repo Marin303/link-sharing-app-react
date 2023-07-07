@@ -9,12 +9,10 @@ const Profile = ({ handleFormDataChange }) => {
   const handleImageChange = (event) => {
     const image = event.target.files[0];
     setSelectedImage(image);
-    /* handleImageSelection(image); */
   };
 
   const handleImageRemove = () => {
     setSelectedImage(null);
-    /* handleImageSelection(null); */
   };
 
   const handleSubmit = (e) => {
