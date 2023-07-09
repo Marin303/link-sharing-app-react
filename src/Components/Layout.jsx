@@ -25,7 +25,7 @@ const Layout = () => {
   return (
     <div className="bg-blue-200 text-center min-h-screen">
       <Nav activeSection={active} onSectionChange={handleSectionChange} />
-      <div className="flex justify-between">
+      <div className="flex flex-wrap justify-center">
         <Content forms={forms} profileData={profileData} />
         {active === "links" ? (
           <CustomLinks onFormChange={handleFormChange} />

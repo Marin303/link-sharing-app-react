@@ -48,7 +48,7 @@ const Profile = ({ handleFormDataChange }) => {
 
   return (
     <>
-      <section className="bg-white text-black text-left m-2 p-4 w-full rounded-lg">
+      <section className="bg-white text-black text-left m-2 p-4 w-3/4 rounded-lg">
         <h2 className="font-bold text-lg">Profile Details</h2>
         <p>Add your details to create a personal touch to your profile</p>
         <div className="bg-empty mt-2 p-2 rounded-lg flex justify-center items-center">
