@@ -15,21 +15,40 @@ const Profile = ({ handleFormDataChange }) => {
     setSelectedImage(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      firstName,
-      lastName,
-      email,
-      image: selectedImage
-    };
-    handleFormDataChange(formData);
-    console.log(formData);
+  
+    const formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("image", selectedImage);
+  
+    try {
+      const response = await fetch(process.env.REACT_APP_API_KEY, {
+        method: "PUT",
+        body: formData,
+      });
+  
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log(responseData);
+        handleFormDataChange({
+          ...formData,
+          firstName,
+          lastName,
+          email,
+          image: selectedImage,
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
     <>
-      <section className="bg-white text-black text-left m-2 p-4 w-full rounded-lg">
+      <section className="bg-white text-black text-left m-2 p-4 w-3/4 rounded-lg">
         <h2 className="font-bold text-lg">Profile Details</h2>
         <p>Add your details to create a personal touch to your profile</p>
         <div className="bg-empty mt-2 p-2 rounded-lg flex justify-center items-center">

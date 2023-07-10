@@ -64,7 +64,7 @@ const CustomLinks = ({ onFormChange }) => {
   };
 
   return (
-    <section className="bg-white text-black text-left m-2 w-full rounded-lg p-4 links">
+    <section className="bg-white text-black text-left m-2 w-3/4 rounded-lg p-4 links">
       <h2 className="text-lg font-bold">Customize your links</h2>
       <p className="mt-2">
         Add/edit/remove links below and then share all your profiles with the
