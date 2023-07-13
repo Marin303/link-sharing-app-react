@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Content from "../Components/Content";
 
-const Preview = ({ forms, profileData }) => {
+const Preview = () => {
+  
   return (
     <>
       <div className="bg-blue-400 h-96 p-2 rounded-b-lg">
@@ -12,15 +13,12 @@ const Preview = ({ forms, profileData }) => {
           </Link>
           <button className="btn-default">Share Link</button>
         </div>
-        {forms && forms.length > 0 ? (
-          <Content forms={forms} profileData={profileData} />
-        ) : (
-          <p>No forms available.</p>
-        )}
+        <div className="flex flex-col justify-center items-center">
+          <Content />
+        </div>
       </div>
     </>
   );
 };
 
 export default Preview;
-
