@@ -15,35 +15,16 @@ const Profile = ({ handleFormDataChange }) => {
     setSelectedImage(null);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    const formData = new FormData();
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
-    formData.append("email", email);
-    formData.append("image", selectedImage);
-  
-    try {
-      const response = await fetch(process.env.REACT_APP_API_KEY, {
-        method: "PUT",
-        body: formData,
-      });
-  
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log(responseData);
-        handleFormDataChange({
-          ...formData,
-          firstName,
-          lastName,
-          email,
-          image: selectedImage,
-        });
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const formData = {
+      firstName,
+      lastName,
+      email,
+      image: selectedImage,
+    };
+    handleFormDataChange(formData);
+    console.log(formData);
   };
 
   return (
@@ -116,12 +97,12 @@ const Profile = ({ handleFormDataChange }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               onClick={handleSubmit}
               className="bg-blue-400 p-2 rounded-lg mt-2 text-white"
-              >
-                Submit
+            >
+              Submit
             </button>
           </form>
         </div>

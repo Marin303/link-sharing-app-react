@@ -10,8 +10,7 @@ const Content = ({ forms, profileData }) => {
   };
 
   const renderValues = () => {
-    const valueDivs = forms
-    .map((form, index) => {
+    const valueDivs = forms?.map((form, index) => {
       const { platform, link } = form;
       const backgroundColor = platformColors[platform] || "";
 
@@ -22,24 +21,29 @@ const Content = ({ forms, profileData }) => {
             ${backgroundColor}
             `}
         >
-          <a href={link} className="text-white" target="_blank" rel="noreferrer">{platform}</a>
+          <a
+            href={link}
+            className="text-white"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {platform}
+          </a>
         </div>
       );
     });
 
-    const emptyDivs = Array.from(
-      { length: 5 - valueDivs.length },
-      (_, index) => (
+    if (valueDivs?.length) {
+      const emptyDivs = Array.from({ length: 5 - valueDivs.length }, (_, index) => (
         <div
           key={`empty-${index}`}
           className="bg-empty rounded-lg p-1 h-6"
         ></div>
-      )
-    );
+      ));
 
-    return [...valueDivs, ...emptyDivs];
+      return [...valueDivs, ...emptyDivs];
+    }
   };
-
   return (
     <aside
       className="
@@ -61,12 +65,12 @@ const Content = ({ forms, profileData }) => {
           />
         )}
       </div>
-        <div className="mb-4 bg-empty rounded-lg p-1 min-w-[50%] min-h-[24px] break-words">
-          {profileData?.firstName} {profileData?.lastName}
-        </div>
-        <div className=" bg-empty rounded-lg p-1 min-w-[50%] min-h-[24px] break-words">
-          {profileData?.email}
-        </div>
+      <div className="mb-4 bg-empty rounded-lg p-1 min-w-[50%] min-h-[24px] break-words">
+        {profileData?.firstName} {profileData?.lastName}
+      </div>
+      <div className=" bg-empty rounded-lg p-1 min-w-[50%] min-h-[24px] break-words">
+        {profileData?.email}
+      </div>
       <div className="w-[200px] mt-2 mb-4 flex flex-col gap-2 text-white rounded-lg">
         {renderValues()}
       </div>

@@ -12,15 +12,10 @@ const Preview = ({ forms, profileData }) => {
           </Link>
           <button className="btn-default">Share Link</button>
         </div>
-        {forms && forms.length > 0 ? (
-          <Content forms={forms} profileData={profileData} />
-        ) : (
-          <p>No forms available.</p>
-        )}
+        <Content forms={forms} profileData={profileData} />
       </div>
     </>
   );
 };
 
 export default Preview;
-
