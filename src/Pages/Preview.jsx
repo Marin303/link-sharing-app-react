@@ -12,7 +12,9 @@ const Preview = ({ forms, profileData }) => {
           </Link>
           <button className="btn-default">Share Link</button>
         </div>
-        <Content forms={forms} profileData={profileData} />
+        <div className="flex flex-col justify-center items-center">
+          <Content forms={forms} profileData={profileData} />
+        </div>
       </div>
     </>
   );
