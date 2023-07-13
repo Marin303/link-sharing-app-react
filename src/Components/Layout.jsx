@@ -6,7 +6,7 @@ import Profile from "./Profile";
 import Preview from "../Pages/Preview";
 
 const Layout = () => {
-  const [forms, setForms] = useState([{ platform: "", link: "" }]);
+  const [forms, setForms] = useState([]);
   const [active, setActive] = useState("links");
   const [profileData, setProfileData] = useState(null);
 
@@ -34,7 +34,7 @@ const Layout = () => {
         ) : null}
       </div>
       {active === "preview" ? (
-      <Preview forms={forms} profileData={profileData} />
+      <Preview forms={forms} />
       ): null}
     </div>
   );

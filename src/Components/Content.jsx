@@ -1,6 +1,7 @@
 import React from "react";
 
 const Content = ({ forms, profileData }) => {
+  
   const platformColors = {
     github: "bg-black",
     youtube: "bg-red-600",
@@ -33,16 +34,16 @@ const Content = ({ forms, profileData }) => {
       );
     });
 
-    if (valueDivs?.length) {
-      const emptyDivs = Array.from({ length: 5 - valueDivs.length }, (_, index) => (
+    
+      const emptyDivs = Array.from({ length: 4 - (valueDivs?.length || 0) }, (_, index) => (
         <div
           key={`empty-${index}`}
           className="bg-empty rounded-lg p-1 h-6"
         ></div>
       ));
 
-      return [...valueDivs, ...emptyDivs];
-    }
+      return [...(valueDivs || []), ...emptyDivs];
+    
   };
   return (
     <aside
@@ -52,7 +53,7 @@ const Content = ({ forms, profileData }) => {
     bg-no-repeat 
     bg-center 
     bg-cover 
-    relative flex flex-col justify-center items-center 
+    flex flex-col justify-center items-center 
     bg-white rounded-lg m-2 links
     "
     >
