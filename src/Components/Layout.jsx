@@ -21,21 +21,26 @@ const Layout = () => {
   const handleFormDataChange = (data) => {
     setProfileData(data);
   };
-  
+
+  const isActiveLinks = active === "links" 
+  const isActiveProfile = active === "profile" 
+  const isActivePreview = active === "preview"
+
   return (
     <div className="bg-blue-200 text-center min-h-screen">
       <Nav activeSection={active} onSectionChange={handleSectionChange} />
       <div className="flex flex-wrap justify-center">
         <Content forms={forms} profileData={profileData} />
-        {active === "links" ? (
+        {isActiveLinks && (
           <CustomLinks onFormChange={handleFormChange} />
-        ) : active === "profile" ? (
+        )}
+         {isActiveProfile &&  (
           <Profile handleFormDataChange={handleFormDataChange} />
-        ) : null}
+        )}
       </div>
-      {active === "preview" ? (
-      <Preview forms={forms} />
-      ): null}
+        {isActivePreview && (
+           <Preview />
+         )}
     </div>
   );
 };
