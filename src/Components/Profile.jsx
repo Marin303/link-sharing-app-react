@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 const Profile = ({ handleFormDataChange }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [firstName, setFirstName] = useState("");
@@ -15,7 +15,7 @@ const Profile = ({ handleFormDataChange }) => {
     setSelectedImage(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = {
       firstName,
@@ -25,6 +25,13 @@ const Profile = ({ handleFormDataChange }) => {
     };
     handleFormDataChange(formData);
     console.log(formData);
+
+    try {
+      await axios.post(process.env.REACT_APP_API_KEY, formData)
+      
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -60,7 +67,7 @@ const Profile = ({ handleFormDataChange }) => {
               id="files"
               className="hidden"
               type="file"
-              name="myImage"
+              name="image"
               onChange={handleImageChange}
             />
           </div>
