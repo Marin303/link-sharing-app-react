@@ -1,6 +1,7 @@
 import React from "react";
 
 const Content = ({ forms, profileData }) => {
+
   const platformColors = {
     github: "bg-black",
     youtube: "bg-red-600",
@@ -35,7 +36,7 @@ const Content = ({ forms, profileData }) => {
 
     const countDivs = valueDivs?.length || 0;
     const checkValue = valueDivs || [];
-    
+
     const emptyDivs = Array.from({ length: 4 - countDivs }, (_, index) => (
       <div key={`empty-${index}`} className="bg-empty rounded-lg p-1 h-6" />
     ));

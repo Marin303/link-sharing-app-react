@@ -3,7 +3,6 @@ import Nav from "./Nav";
 import Content from "./Content";
 import CustomLinks from "./CustomLinks";
 import Profile from "./Profile";
-import Preview from "../Pages/Preview";
 
 const Layout = () => {
   const [forms, setForms] = useState([]);
@@ -24,11 +23,10 @@ const Layout = () => {
 
   const isActiveLinks = active === "links" 
   const isActiveProfile = active === "profile" 
-  const isActivePreview = active === "preview"
-
+  
   return (
     <div className="bg-blue-200 text-center min-h-screen">
-      <Nav activeSection={active} onSectionChange={handleSectionChange} />
+      <Nav onSectionChange={handleSectionChange} />
       <div className="flex flex-wrap justify-center">
         <Content forms={forms} profileData={profileData} />
         {isActiveLinks && (
@@ -38,9 +36,6 @@ const Layout = () => {
           <Profile handleFormDataChange={handleFormDataChange} />
         )}
       </div>
-        {isActivePreview && (
-           <Preview />
-         )}
     </div>
   );
 };
