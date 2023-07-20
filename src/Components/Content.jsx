@@ -1,7 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 
 const Content = ({ forms, profileData }) => {
 
+  console.log('Profile Data:', profileData);
+  
   const platformColors = {
     github: "bg-black",
     youtube: "bg-red-600",
@@ -77,4 +80,11 @@ const Content = ({ forms, profileData }) => {
   );
 };
 
-export default Content;
+const mapStateToProps = (state) => {
+  return {
+    forms: state.forms, 
+    profileData: state.profileData,
+  };
+};
+
+export default connect(mapStateToProps)(Content);

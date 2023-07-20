@@ -8,5 +8,9 @@ npm i -D react-router-dom@latest
 ```
 
 ```
-npm install axios
+npm install redux react-redux redux-thunk
+```
+
+```
+npm install @reduxjs/toolkit
 ```
