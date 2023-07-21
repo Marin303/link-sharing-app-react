@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { submitProfileData } from "./redux/actions"; // Import your Redux action
 
 const Profile = ({ handleFormDataChange }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+
+  const dispatch = useDispatch(); // Get the dispatch function from React Redux
 
   const handleImageChange = (event) => {
     const image = event.target.files[0];
@@ -16,14 +20,15 @@ const Profile = ({ handleFormDataChange }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const formData = {
       firstName,
       lastName,
       email,
       image: selectedImage,
     };
-    handleFormDataChange(formData);
+    dispatch(submitProfileData(formData)); // Dispatch the action to update Redux state with the form data
+    // handleFormDataChange(formData);
     console.log(formData);
   };
 
