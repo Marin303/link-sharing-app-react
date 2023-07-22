@@ -133,7 +133,11 @@ const Profile = () => {
             >
               Submit
             </button>
-            {errorAlert && <p className="text-red-500">{errorAlert}</p>}
+            { errorAlert && 
+            <p className="text-red-500">
+              {errorAlert}
+            </p>
+            }
           </form>
         </div>
       </section>

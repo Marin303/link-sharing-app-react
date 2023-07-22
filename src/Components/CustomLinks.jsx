@@ -62,7 +62,12 @@ const CustomLinks = ({ onFormChange }) => {
             value={form.link}
             onChange={(event) => handleFormChange(event, index, "link")}
           />
-          {linkError && <p className="text-red-500">{linkError}</p>}
+          { 
+          linkError && 
+           <p className="text-red-500">
+            {linkError}
+           </p>
+          }
         </div>
       </div>
     ));

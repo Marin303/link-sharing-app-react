@@ -13,6 +13,7 @@ const Nav = ({ activeSection, onSectionChange, forms }) => {
   const handlePreviewClick = () => {
     navigate("/preview", { state: { forms } });
   };
+
   return (
     <div className="bg-white flex items-center justify-between p-3">
       <div className="flex">
@@ -21,7 +22,11 @@ const Nav = ({ activeSection, onSectionChange, forms }) => {
       </div>
       <div>
         <button
-          className={`btn-default ${activeSection === "links" ? "active" : ""}`}
+          className=
+            {`btn-default 
+            ${
+            activeSection === "links" ? "active" : ""}`
+            }
           onClick={() => onSectionChange("links")}
         >
           <span className="hidden sm:block">Links</span>
@@ -30,9 +35,8 @@ const Nav = ({ activeSection, onSectionChange, forms }) => {
           </span>
         </button>
         <button
-          className={`btn-default ml-2 ${
-            activeSection === "profile" ? "active" : ""
-          }`}
+          className={`btn-default ml-2 ${activeSection === "profile" ? "active" : ""
+            }`}
           onClick={() => onSectionChange("profile")}
         >
           <span className="hidden sm:block">Profile Details</span>

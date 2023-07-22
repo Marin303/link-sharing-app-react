@@ -46,14 +46,14 @@ const Content = ({ forms, profileData }) => {
   return (
     <aside
       className="
-    max-h-[600px] min-h-[600px] min-w-[300px] 
-    bg-iphone-image 
-    bg-no-repeat 
-    bg-center 
-    bg-cover 
-    flex flex-col justify-center items-center 
-    bg-white rounded-lg m-2 links
-    "
+       max-h-[600px] min-h-[600px] min-w-[300px] 
+       bg-iphone-image 
+       bg-no-repeat 
+       bg-center 
+       bg-cover 
+       flex flex-col justify-center items-center 
+       bg-white rounded-lg m-2 links
+       break-words"  
     >
       <div className="mb-3 rounded-full bg-empty w-[100px] h-[100px]">
         {profileData?.image && (
@@ -64,10 +64,10 @@ const Content = ({ forms, profileData }) => {
           />
         )}
       </div>
-      <div className="mb-4 bg-empty rounded-lg p-1 min-w-[50%] min-h-[24px] break-words">
+      <div className="mb-4 bg-empty rounded-lg p-1 w-[50%] max-w-[60%] min-h-[24px]">
         {profileData?.firstName} {profileData?.lastName}
       </div>
-      <div className=" bg-empty rounded-lg p-1 min-w-[50%] min-h-[24px] break-words">
+      <div className=" bg-empty rounded-lg p-1 w-[50%] max-w-[60%] min-h-[24px]">
         {profileData?.email}
       </div>
       <div className="w-[200px] mt-2 mb-4 flex flex-col gap-2 text-white rounded-lg">
