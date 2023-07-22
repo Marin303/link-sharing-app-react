@@ -21,18 +21,16 @@ const Layout = () => {
     setProfileData(data);
   };
 
-  const isActiveLinks = active === "links" 
-  const isActiveProfile = active === "profile" 
-  
+  const isActiveLinks = active === "links";
+  const isActiveProfile = active === "profile";
+
   return (
     <div className="bg-blue-200 text-center min-h-screen">
-      <Nav onSectionChange={handleSectionChange} />
+      <Nav onSectionChange={handleSectionChange} forms={forms} />
       <div className="flex flex-wrap justify-center">
         <Content forms={forms} profileData={profileData} />
-        {isActiveLinks && (
-          <CustomLinks onFormChange={handleFormChange} />
-        )}
-         {isActiveProfile &&  (
+        {isActiveLinks && <CustomLinks onFormChange={handleFormChange} />}
+        {isActiveProfile && (
           <Profile handleFormDataChange={handleFormDataChange} />
         )}
       </div>
