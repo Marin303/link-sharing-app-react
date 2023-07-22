@@ -1,34 +1,38 @@
-import React from "react";
-import { connect, useDispatch } from "react-redux";
-import {
-  updateFirstName,
-  updateLastName,
-  updateEmail,
-  updateImage,
-} from "../redux/actions";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateFirstName, updateLastName, updateEmail, updateImage } from "../redux/actions"; 
 
-const Profile = ({ firstName, lastName, email, image }) => {
+const Profile = () => {
 
-  const dispatch = useDispatch()
-  
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const dispatch = useDispatch(); 
+
   const handleImageChange = (event) => {
     const image = event.target.files[0];
-    dispatch(updateImage(image));
+    setSelectedImage(image); 
   };
 
   const handleImageRemove = () => {
-    dispatch(updateImage(null));
+    setSelectedImage(null); 
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
       firstName,
       lastName,
       email,
-      image,
+      image: selectedImage, 
     };
-    
+    dispatch(updateFirstName(formData.firstName));
+    dispatch(updateLastName(formData.lastName))
+    dispatch(updateEmail(formData.email))
+    dispatch(updateImage(formData.image))
+   
     console.log(formData);
   };
 
@@ -40,20 +44,20 @@ const Profile = ({ firstName, lastName, email, image }) => {
         <div className="bg-empty mt-2 p-2 rounded-lg flex justify-center items-center">
           <p>Profile Picture</p>
           <div className="border-solid border-2 border-blue-500 w-32 h-32 relative rounded-lg flex justify-center items-center m-2">
-            {image && (
+            {selectedImage && (
               <img
                 className="rounded-lg absolute w-full h-full"
                 alt="not found"
-                src={URL.createObjectURL(image)}
+                src={URL.createObjectURL(selectedImage)}
               />
             )}
             <label
               htmlFor="files"
               className="bg-black text-white rounded-lg p-1 absolute cursor-pointer opacity-75"
             >
-              {image ? "Change Image" : "Select Image"}
+              {selectedImage ? "Change Image" : "Select Image"}
             </label>
-            {image && (
+            {selectedImage && (
               <button
                 onClick={handleImageRemove}
                 className="bg-red-500 text-white p-0.5 rounded-lg absolute bottom-2 right-2"
@@ -79,7 +83,7 @@ const Profile = ({ firstName, lastName, email, image }) => {
               id="firstName"
               name="firstName"
               value={firstName}
-              onChange={(e) => dispatch(updateFirstName(e.target.value))}
+              onChange={(e) => setFirstName(e.target.value)}
               required
             />
 
@@ -89,7 +93,7 @@ const Profile = ({ firstName, lastName, email, image }) => {
               id="lastName"
               name="lastName"
               value={lastName}
-              onChange={(e) => dispatch(updateLastName(e.target.value))}
+              onChange={(e) => setLastName(e.target.value)}
               required
             />
 
@@ -99,7 +103,7 @@ const Profile = ({ firstName, lastName, email, image }) => {
               id="email"
               name="email"
               value={email}
-              onChange={(e) => dispatch(updateEmail(e.target.value))}
+              onChange={(e) => setEmail(e.target.value)}
             />
 
             <button
@@ -116,21 +120,4 @@ const Profile = ({ firstName, lastName, email, image }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { firstName, lastName, email, image } = state.profileData;
-  return {
-    firstName,
-    lastName,
-    email,
-    image,
-  };
-};
-
-const mapDispatchToProps = {
-  updateFirstName,
-  updateLastName,
-  updateEmail,
-  updateImage,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default Profile;
