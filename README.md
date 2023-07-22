@@ -1,20 +1,29 @@
 ### Deploy preview
+<img src="https://img.icons8.com/?size=512&id=jsaHswgwywpj&format=png" width=30px/>[Click here](https://link-sharing-app-react.netlify.app/)
+# Link sharing app (Work in progress)
 
-[Click here](https://link-sharing-app-react.netlify.app/)
+## Technologies Used
+- React
+```
+  npx create-react-app <app name>
+```
+- Tailwind CSS
+```
+  npm install -D tailwindcss
+  npx tailwindcss init
+```
+- React router
+```
+  npm i react-router-dom@latest
+```
+- Redux
+```
+  npm install @reduxjs/toolkit
+```
+![](https://skillicons.dev/icons?i=react,tailwind,javascript,redux)
 
-```
-npm install -D tailwindcss
-npx tailwindcss init
-```
+## Features
+- Creating visual display of content links
+- Sharing links and information about profile
 
-```
-npm i -D react-router-dom@latest
-```
-
-```
-npm install redux react-redux redux-thunk
-```
-
-```
-npm install @reduxjs/toolkit
-```
+  
