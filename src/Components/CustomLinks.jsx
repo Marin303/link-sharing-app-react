@@ -35,7 +35,9 @@ const CustomLinks = ({ onFormChange }) => {
       <div key={index} className="bg-empty mt-2 p-2 rounded-lg">
 
         <div className="flex justify-between mb-2">
+
           <p>Link #{index + 1}</p>
+
           <button onClick={() => removeForm(index)}>Remove</button>
         </div>
 
@@ -53,6 +55,7 @@ const CustomLinks = ({ onFormChange }) => {
           <option value="facebook">Facebook</option>
           <option value="twitter">Twitter</option>
         </select>
+        
         <p>Link</p>
 
         <div>

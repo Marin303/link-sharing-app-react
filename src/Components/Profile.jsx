@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { submitProfileData } from "./redux/actions"; // Import your Redux action
+import { updateFirstName, updateLastName, updateEmail, updateImage } from "../redux/actions"; 
 
-const Profile = ({ handleFormDataChange }) => {
+const Profile = () => {
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
 
-  const dispatch = useDispatch(); // Get the dispatch function from React Redux
+  const dispatch = useDispatch(); 
 
   const handleImageChange = (event) => {
     const image = event.target.files[0];
-    setSelectedImage(image);
+    setSelectedImage(image); 
   };
 
   const handleImageRemove = () => {
-    setSelectedImage(null);
+    setSelectedImage(null); 
   };
 
   const handleSubmit = (e) => {
@@ -25,10 +26,13 @@ const Profile = ({ handleFormDataChange }) => {
       firstName,
       lastName,
       email,
-      image: selectedImage,
+      image: selectedImage, 
     };
-    dispatch(submitProfileData(formData)); // Dispatch the action to update Redux state with the form data
-    // handleFormDataChange(formData);
+    dispatch(updateFirstName(formData.firstName));
+    dispatch(updateLastName(formData.lastName))
+    dispatch(updateEmail(formData.email))
+    dispatch(updateImage(formData.image))
+   
     console.log(formData);
   };
 
@@ -65,14 +69,14 @@ const Profile = ({ handleFormDataChange }) => {
               id="files"
               className="hidden"
               type="file"
-              name="myImage"
+              name="image"
               onChange={handleImageChange}
             />
           </div>
           <p>Image must be PNG, JPG, or BMP format</p>
         </div>
         <div className="bg-empty mt-2 p-2 rounded-lg">
-          <form onSubmit={handleSubmit}>
+          <form>
             <label htmlFor="firstName">First name*</label>
             <input
               type="text"
