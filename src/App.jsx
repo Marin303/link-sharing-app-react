@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./Components/Layout";
 import Preview from "./Pages/Preview";
-import "./App.css"
+import "./App.css";
 
 const App = () => {
   return (
