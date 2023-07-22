@@ -1,23 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateFirstName, updateLastName, updateEmail, updateImage } from "../redux/actions"; 
+import {
+  updateFirstName,
+  updateLastName,
+  updateEmail,
+  updateImage,
+} from "../redux/actions";
 
 const Profile = () => {
-
   const [selectedImage, setSelectedImage] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [errorAlert, setErrorAlert] = useState("");
 
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const handleImageChange = (event) => {
     const image = event.target.files[0];
-    setSelectedImage(image); 
+    setSelectedImage(image);
   };
 
   const handleImageRemove = () => {
-    setSelectedImage(null); 
+    setSelectedImage(null);
+  };
+
+  const isEmailValid = (email) => {
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+    return emailPattern.test(email);
   };
 
   const handleSubmit = (e) => {
@@ -26,15 +36,27 @@ const Profile = () => {
       firstName,
       lastName,
       email,
-      image: selectedImage, 
+      image: selectedImage,
     };
-    dispatch(updateFirstName(formData.firstName));
-    dispatch(updateLastName(formData.lastName))
-    dispatch(updateEmail(formData.email))
-    dispatch(updateImage(formData.image))
-   
-    console.log(formData);
-  };
+
+    let error = "";
+
+  switch (true) {
+    case !firstName || !lastName || !email || !selectedImage:
+      error = "Please fill out all required fields.";
+      break;
+    case !isEmailValid(email):
+      error = "Please enter a valid email address.";
+      break;
+    default:
+      dispatch(updateFirstName(formData.firstName));
+      dispatch(updateLastName(formData.lastName));
+      dispatch(updateEmail(formData.email));
+      dispatch(updateImage(formData.image));
+  }
+
+  setErrorAlert(error);
+};
 
   return (
     <>
@@ -84,7 +106,6 @@ const Profile = () => {
               name="firstName"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              required
             />
 
             <label htmlFor="lastName">Last name*</label>
@@ -94,7 +115,6 @@ const Profile = () => {
               name="lastName"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              required
             />
 
             <label htmlFor="email">Email</label>
@@ -113,6 +133,7 @@ const Profile = () => {
             >
               Submit
             </button>
+            {errorAlert && <p className="text-red-500">{errorAlert}</p>}
           </form>
         </div>
       </section>

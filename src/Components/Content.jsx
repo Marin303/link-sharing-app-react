@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 
 const Content = ({ forms, profileData }) => {
 
-  console.log('Profile Data:', profileData);
-  
   const platformColors = {
     github: "bg-black",
     youtube: "bg-red-600",

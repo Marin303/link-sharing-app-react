@@ -1,6 +1,6 @@
 ### Deploy preview
 
-[Click here](link-sharing-app-react.netlify.app)
+[Click here](https://link-sharing-app-react.netlify.app/)
 
 ```
 npm install -D tailwindcss
