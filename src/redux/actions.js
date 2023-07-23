@@ -17,4 +17,7 @@ export const updateFirstName = (firstName) => ({
     type: "UPDATE_IMAGE",
     payload: image,
   });
-  
+  export const updateForms = (forms) => ({
+    type: "UPDATE_FORMS",
+    payload: forms,
+  });

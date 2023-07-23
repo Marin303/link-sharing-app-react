@@ -8,21 +8,31 @@ import {
 } from "../redux/actions";
 
 const Profile = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+
+const initialProfileData = JSON.parse(localStorage.getItem('profileData')) || {};
+const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "");
+
+  const [firstName, setFirstName] = useState(initialProfileData.firstName || "");
+  const [lastName, setLastName] = useState(initialProfileData.lastName || "");
+  const [email, setEmail] = useState(initialProfileData.email || "");
+  
   const [errorAlert, setErrorAlert] = useState("");
 
   const dispatch = useDispatch();
 
   const handleImageChange = (event) => {
     const image = event.target.files[0];
-    setSelectedImage(image);
+    const reader = new FileReader();
+  
+    reader.onloadend = () => {
+      setSelectedImage(reader.result);
+    };
+  
+    reader.readAsDataURL(image);
   };
-
+  
   const handleImageRemove = () => {
-    setSelectedImage(null);
+    setSelectedImage("");
   };
 
   const isEmailValid = (email) => {
@@ -32,7 +42,7 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = {
+    const profileData = {
       firstName,
       lastName,
       email,
@@ -49,11 +59,13 @@ const Profile = () => {
       error = "Please enter a valid email address.";
       break;
     default:
-      dispatch(updateFirstName(formData.firstName));
-      dispatch(updateLastName(formData.lastName));
-      dispatch(updateEmail(formData.email));
-      dispatch(updateImage(formData.image));
-  }
+      dispatch(updateFirstName(profileData.firstName));
+      dispatch(updateLastName(profileData.lastName));
+      dispatch(updateEmail(profileData.email));
+      dispatch(updateImage(profileData.image));
+      localStorage.setItem('profileData', JSON.stringify(profileData));
+      console.log("form", profileData)
+    }
 
   setErrorAlert(error);
 };
@@ -70,7 +82,7 @@ const Profile = () => {
               <img
                 className="rounded-lg absolute w-full h-full"
                 alt="not found"
-                src={URL.createObjectURL(selectedImage)}
+                src={selectedImage}
               />
             )}
             <label
@@ -133,7 +145,11 @@ const Profile = () => {
             >
               Submit
             </button>
-            {errorAlert && <p className="text-red-500">{errorAlert}</p>}
+            { errorAlert && 
+            <p className="text-red-500">
+              {errorAlert}
+            </p>
+            }
           </form>
         </div>
       </section>

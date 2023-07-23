@@ -1,11 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
-import formReducer from "./reducers";
-
+import profileReducer from "./profileReducer";
+import formsReducer from "./formsReducer";
 
 const rootReducer = combineReducers({
-  profileData: formReducer,
-  
+  profileData: profileReducer,
+  forms: formsReducer 
 });
 
 const store = configureStore({
