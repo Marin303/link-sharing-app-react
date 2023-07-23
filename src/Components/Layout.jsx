@@ -31,10 +31,12 @@ const Layout = () => {
         forms={forms} 
       />
       <div className="flex flex-wrap justify-center">
-        <Content 
-         forms={forms} 
-         profileData={profileData}
-        />
+        <div className="hidden sm:block">
+           <Content 
+            forms={forms} 
+            profileData={profileData}
+           />
+        </div>
       {
        isActiveLinks && 
         <CustomLinks onFormChange={handleFormChange} />}

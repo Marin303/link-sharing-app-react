@@ -64,7 +64,6 @@ const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "
       dispatch(updateEmail(profileData.email));
       dispatch(updateImage(profileData.image));
       localStorage.setItem('profileData', JSON.stringify(profileData));
-      console.log("form", profileData)
     }
 
   setErrorAlert(error);
@@ -72,11 +71,11 @@ const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "
 
   return (
     <>
-      <section className="bg-white text-black text-left m-2 p-4 w-3/4 rounded-lg">
+      <section className="bg-white text-black text-left mx-auto my-2 p-4 w-3/4 rounded-lg">
         <h2 className="font-bold text-lg">Profile Details</h2>
         <p>Add your details to create a personal touch to your profile</p>
         <div className="bg-empty mt-2 p-2 rounded-lg flex justify-center items-center">
-          <p>Profile Picture</p>
+          <p className="hidden sm:block">Profile Picture</p>
           <div className="border-solid border-2 border-blue-500 w-32 h-32 relative rounded-lg flex justify-center items-center m-2">
             {selectedImage && (
               <img
@@ -107,7 +106,7 @@ const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "
               onChange={handleImageChange}
             />
           </div>
-          <p>Image must be PNG, JPG, or BMP format</p>
+          <p className="hidden sm:block">Image must be PNG, JPG, or BMP format</p>
         </div>
         <div className="bg-empty mt-2 p-2 rounded-lg">
           <form>
