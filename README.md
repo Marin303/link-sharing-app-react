@@ -12,7 +12,7 @@
   npm install -D tailwindcss
   npx tailwindcss init
 ```
-- React router
+- React router - used just for practice
 ```
   npm i react-router-dom@latest
 ```

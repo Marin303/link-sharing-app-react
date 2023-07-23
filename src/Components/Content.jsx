@@ -60,7 +60,7 @@ const Content = ({ forms, profileData }) => {
           <img
             className="rounded-full w-full h-full"
             alt="Profile Pic"
-            src={URL.createObjectURL(profileData?.image)}
+            src={profileData?.image}
           />
         )}
       </div>
@@ -80,6 +80,7 @@ const Content = ({ forms, profileData }) => {
 const mapStateToProps = (state) => {
   return {
     profileData: state.profileData,
+    forms: state.forms,
   };
 };
 

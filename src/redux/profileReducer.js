@@ -2,10 +2,10 @@ const initialState = {
     firstName: "",
     lastName: "",
     email: "",
-    image: ""
+    image: "",
   };
   
-  const formReducer = (state = initialState, action) => {
+  const profileReducer = (state = initialState, action) => {
     
     switch (action.type) {
       case "UPDATE_FIRST_NAME":
@@ -21,5 +21,5 @@ const initialState = {
     }
   };
   
-  export default formReducer;
+  export default profileReducer;
   

@@ -1,8 +1,17 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateForms } from "../redux/actions";
 const CustomLinks = ({ onFormChange }) => {
-  const [forms, setForms] = useState([{ platform: "", link: "" }]);
+
+  const dispatch = useDispatch()
+  const [forms, setForms] = useState(JSON.parse(localStorage.getItem('forms')) || [{ platform: "", link: "" }]);
   const [linkError, setLinkError] = useState("");
+
+  useEffect(() => {
+    console.log("forms", forms)
+    localStorage.setItem('forms', JSON.stringify(forms));
+    dispatch(updateForms(forms));
+  }, [forms, dispatch]);
 
   const createNewForm = () => {
     if (forms.length < 5) {
@@ -31,6 +40,7 @@ const CustomLinks = ({ onFormChange }) => {
   };
 
   const renderForms = () => {
+    
     return forms.map((form, index) => (
       <div key={index} className="bg-empty mt-2 p-2 rounded-lg">
         <div className="flex justify-between mb-2">
