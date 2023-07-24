@@ -9,43 +9,34 @@ const Preview = () => {
   const forms = useSelector(state => state.forms);
   const profileData = useSelector(state => state.profileData);
   const imageFile = useSelector(state => state.profileData.imageFile);
-
   
   const uploadData = async () => {
-    const formData = new FormData();
-    formData.append('image', imageFile);
-  
-    // Excluding the base64 image from profileData
-    const { image, ...restProfileData } = profileData;
-  
-    formData.append('profileData', JSON.stringify(restProfileData));
-    formData.append('forms', JSON.stringify(forms));
-  
-    const response = await fetch(process.env.REACT_APP_API_KEY, {
-        method: 'POST',
-        body: formData,
-    });
+    try {
+      const formData = new FormData();
+      formData.append('image', imageFile);
     
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
+      // Excluding the base64 image from profileData
+      const { image, ...restProfileData } = profileData;
+    
+      formData.append('profileData', JSON.stringify(restProfileData));
+      formData.append('forms', JSON.stringify(forms));
+    
+      const response = await fetch(process.env.REACT_APP_API_KEY, {
+          method: 'POST',
+          body: formData,
+      });
+      
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+    
+      /* const data = await response.json();
+      console.log(data); */
+      
+    } catch(error) {
+        console.error('Error:', error);
     }
-  
-    const data = await response.json();
-    return data;
   }
-  
-  uploadData().then(data => {
-      console.log(data);
-  }).catch(error => {
-      console.error('Error:', error);
-  });
-  
-
- /*  const check = () =>{
-    console.log("profile", profileData)
-    console.log("forms", forms)
-    console.log("imageFile", imageFile);
-  } */
 
   return (
     <div className="bg-blue-400 h-96 p-2 rounded-b-lg text-center">
