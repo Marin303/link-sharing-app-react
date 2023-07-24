@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateForms } from "../redux/actions";
+
 const CustomLinks = ({ onFormChange }) => {
 
   const dispatch = useDispatch()
   const [forms, setForms] = useState(JSON.parse(localStorage.getItem('forms')) || [{ platform: "", link: "" }]);
   const [linkError, setLinkError] = useState("");
-
+  
   useEffect(() => {
-    console.log("forms", forms)
     localStorage.setItem('forms', JSON.stringify(forms));
     dispatch(updateForms(forms));
   }, [forms, dispatch]);
@@ -29,11 +29,13 @@ const CustomLinks = ({ onFormChange }) => {
     const updatedForms = [...forms];
     updatedForms[index][field] = event.target.value;
 
-    if (field === "link" && !event.target.value.startsWith("https://")) {
+    if (field === "link" 
+        && !event.target.value.startsWith("https://")) 
+        {
       setLinkError("Hey, your value should start with https://");
-    } else {
+        } else {
       setLinkError("");
-    }
+        }
 
     setForms(updatedForms);
     onFormChange(updatedForms);
@@ -84,7 +86,7 @@ const CustomLinks = ({ onFormChange }) => {
   };
 
   return (
-    <section className="bg-white text-black text-left m-2 w-3/4 rounded-lg p-4 links">
+    <section className="bg-white text-black text-left my-2 mx-auto w-3/4 rounded-lg p-4 links ">
       <h2 className="text-lg font-bold">Customize your links</h2>
       <p className="mt-2">
         Add/edit/remove links below and then share all your profiles with the

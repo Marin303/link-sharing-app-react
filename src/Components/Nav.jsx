@@ -18,15 +18,17 @@ const Nav = ({ activeSection, onSectionChange, forms }) => {
     <div className="bg-white flex items-center justify-between p-3">
       <div className="flex">
         <PaperClipImg />
-        <h1 className="hidden sm:block">Link sharing App</h1>
+        <h1 className="hidden sm:block">
+          Link sharing App
+        </h1>
       </div>
       <div>
         <button
           className=
             {`btn-default 
             ${
-            activeSection === "links" ? "active" : ""}`
-            }
+            activeSection === "links" ? "active" : ""
+            }`}
           onClick={() => onSectionChange("links")}
         >
           <span className="hidden sm:block">Links</span>
@@ -35,8 +37,11 @@ const Nav = ({ activeSection, onSectionChange, forms }) => {
           </span>
         </button>
         <button
-          className={`btn-default ml-2 ${activeSection === "profile" ? "active" : ""
-            }`}
+          className=
+          {`btn-default ml-2 
+          ${
+            activeSection === "profile" ? "active" : ""
+          }`}
           onClick={() => onSectionChange("profile")}
         >
           <span className="hidden sm:block">Profile Details</span>
