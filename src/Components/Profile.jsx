@@ -5,12 +5,14 @@ import {
   updateLastName,
   updateEmail,
   updateImage,
+  updateImageFile
 } from "../redux/actions";
 
 const Profile = () => {
 
 const initialProfileData = JSON.parse(localStorage.getItem('profileData')) || {};
 const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "");
+
 
   const [firstName, setFirstName] = useState(initialProfileData.firstName || "");
   const [lastName, setLastName] = useState(initialProfileData.lastName || "");
@@ -21,16 +23,11 @@ const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "
   const dispatch = useDispatch();
 
   const handleImageChange = (event) => {
-    const image = event.target.files[0];
-    const reader = new FileReader();
-  
-    reader.onloadend = () => {
-      setSelectedImage(reader.result);
-    };
-  
-    reader.readAsDataURL(image);
+    const imageFile = event.target.files[0];
+    setSelectedImage(URL.createObjectURL(imageFile));
+    dispatch(updateImageFile(imageFile)); 
   };
-  
+
   const handleImageRemove = () => {
     setSelectedImage("");
   };
@@ -79,6 +76,7 @@ const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "
           <div className="border-solid border-2 border-blue-500 w-32 h-32 relative rounded-lg flex justify-center items-center m-2">
             {selectedImage && (
               <img
+                name="image"
                 className="rounded-lg absolute w-full h-full"
                 alt="not found"
                 src={selectedImage}
