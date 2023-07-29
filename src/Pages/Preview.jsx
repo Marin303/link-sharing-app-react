@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Content from "../Components/Content";
 import GoBackIcon from "../Icons/GoBack";
 import ShareIcon from "../Icons/Share";
 import { useSelector } from "react-redux";
 
 const Preview = () => {
+  const navigate = useNavigate();
   const forms = useSelector(state => state.forms);
   const profileData = useSelector(state => state.profileData);
   const imageFile = useSelector(state => state.profileData.imageFile);
@@ -30,8 +31,10 @@ const Preview = () => {
           throw new Error('Network response was not ok');
       }
     
-      /* const data = await response.json();
-      console.log(data); */
+
+    const data = await response.json();
+    navigate(`/preview/${data.id}`);
+
       
     } catch(error) {
         console.error('Error:', error);
