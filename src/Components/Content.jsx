@@ -60,7 +60,11 @@ const Content = ({ forms, profileData }) => {
           <img
             className="rounded-full w-full h-full"
             alt="Profile Pic"
-            src={profileData?.image}
+            src={
+              profileData?.image.includes("http")
+                ? profileData?.image
+                : `${process.env.REACT_APP_API_KEY}/uploads/${profileData?.image}`
+            }
           />
         )}
       </div>
@@ -77,10 +81,10 @@ const Content = ({ forms, profileData }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    profileData: state.profileData,
-    forms: state.forms,
+    profileData: ownProps.profileData || state.profileData,
+    forms: ownProps.forms || state.forms,
   };
 };
 
