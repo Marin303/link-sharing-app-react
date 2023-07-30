@@ -10,6 +10,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />} />
         <Route path="/preview" element={<Preview />} />
+        <Route path="/preview/:id" element={<Preview />} />
       </Routes>
     </Router>
   );
