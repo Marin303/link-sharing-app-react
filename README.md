@@ -12,18 +12,23 @@
   npm install -D tailwindcss
   npx tailwindcss init
 ```
-- React router - used just for practice
+- React router
 ```
   npm i react-router-dom@latest
 ```
-- Redux
+- Redux - used just for practice
 ```
   npm install @reduxjs/toolkit
+```
+- Share buttons
+```
+npm i react-share
 ```
 ![](https://skillicons.dev/icons?i=react,tailwind,javascript,redux)
 
 ## Features
-- Creating visual display of content links
-- Sharing links and information about profile
+- Create visual display of content links
+- Generate custom URL
+- Share links and information about profile
 
   
