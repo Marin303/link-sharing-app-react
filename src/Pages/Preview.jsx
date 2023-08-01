@@ -4,6 +4,7 @@ import Content from "../Components/Content";
 import GoBackIcon from "../Icons/GoBack";
 import ShareIcon from "../Icons/Share";
 import { useSelector } from "react-redux";
+import Share from "../Components/Share";
 
 const Preview = () => {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ const Preview = () => {
   const imageFile = useSelector((state) => state.profileData.imageFile);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [generatingURL, setGeneratingURL] = useState(false)
+  const [shareMenu, setShareMenu] = useState(false)
 
   const uploadData = async () => {
     try {
@@ -37,7 +40,7 @@ const Preview = () => {
       navigate(`/preview/${data.id}`);
     } catch (error) {
       console.error("Error:", error);
-    }
+    } return setGeneratingURL(true)
   };
 
   useEffect(() => {
@@ -48,7 +51,10 @@ const Preview = () => {
         .then((data) => {
           console.log("mongodb", data);
           setData(data);
-          setIsLoading(false);
+          setIsLoading(false)
+          setTimeout(() => {
+            setGeneratingURL(false)
+          }, 7000);
         })
         .catch((error) => {
           console.error(error);
@@ -57,6 +63,9 @@ const Preview = () => {
     }
   }, [id]);
 
+  const toggleShareMenu = () => {
+    setShareMenu(!shareMenu);
+  }
   return (
     <div className="bg-blue-400 h-96 p-2 rounded-b-lg text-center">
       <div className="w-full flex justify-between p-2 bg-white rounded-lg">
@@ -64,19 +73,36 @@ const Preview = () => {
           <GoBackIcon />
           <span className="hidden sm:block ml-2">Back to Editor</span>
         </Link>
-        <button className="btn-default flex" onClick={uploadData}>
+        <button className="btn-default flex" onClick={uploadData} disabled={generatingURL} >
           <ShareIcon />
-          <span className="hidden sm:block ml-2">Share Link</span>
+          <span className="hidden sm:block ml-2">Create URL</span>
         </button>
       </div>
+      {
+      generatingURL && 
+      <div>
+        Data is being uploaded, wait for generating URL
+      </div>
+      }
       <div className="flex flex-col justify-center items-center">
         {
         isLoading ? 
         (
           <p>Loading...</p>
         ) : 
-        (    
+        (  
+        <>
           <Content forms={data?.forms} profileData={data} />
+          <button 
+            className="btn-default flex mb-2" 
+            onClick={toggleShareMenu}>
+          Share
+          </button>
+          {
+          shareMenu &&
+            <Share/>
+          }
+        </>
         )}
       </div>
     </div>

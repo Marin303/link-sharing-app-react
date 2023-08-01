@@ -27,7 +27,7 @@ const CustomLinks = ({ onFormChange }) => {
 
   const handleFormChange = (event, index, field) => {
     const updatedForms = [...forms];
-    updatedForms[index][field] = event.target.value;
+    updatedForms[index][field] = event.target.value.toLowerCase();
 
     if (field === "link" 
         && !event.target.value.startsWith("https://")) 

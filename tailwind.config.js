@@ -12,6 +12,9 @@ module.exports = {
       colors: {
         "empty": "#eee",
       },
+      fontFamily: {
+        'body': ['Raleway', 'sans-serif']
+      },
     },
   },
   plugins: [],

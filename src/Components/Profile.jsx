@@ -74,7 +74,9 @@ const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "
         <div className="bg-empty mt-2 p-2 rounded-lg flex justify-center items-center">
           <p className="hidden sm:block">Profile Picture</p>
           <div className="border-solid border-2 border-blue-500 w-32 h-32 relative rounded-lg flex justify-center items-center m-2">
-            {selectedImage && (
+            {
+            selectedImage && 
+            (
               <img
                 name="image"
                 className="rounded-lg absolute w-full h-full"
@@ -86,9 +88,15 @@ const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "
               htmlFor="files"
               className="bg-black text-white rounded-lg p-1 absolute cursor-pointer opacity-75"
             >
-              {selectedImage ? "Change Image" : "Select Image"}
+              {
+              selectedImage ? 
+                "Change Image" : 
+                "Select Image"
+              }
             </label>
-            {selectedImage && (
+             {
+             selectedImage && 
+             (
               <button
                 onClick={handleImageRemove}
                 className="bg-red-500 text-white p-0.5 rounded-lg absolute bottom-2 right-2"
@@ -142,7 +150,8 @@ const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "
             >
               Submit
             </button>
-            { errorAlert && 
+            { 
+              errorAlert && 
             <p className="text-red-500">
               {errorAlert}
             </p>

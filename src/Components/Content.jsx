@@ -28,7 +28,7 @@ const Content = ({ forms, profileData }) => {
             target="_blank"
             rel="noreferrer"
           >
-            {platform}
+            {platform.charAt(0).toUpperCase() + platform.slice(1)}
           </a>
         </div>
       );
@@ -46,7 +46,7 @@ const Content = ({ forms, profileData }) => {
   return (
     <aside
       className="
-       max-h-[600px] min-h-[600px] min-w-[300px] 
+       min-h-[600px] min-w-[300px] 
        bg-iphone-image 
        bg-no-repeat 
        bg-center 
@@ -58,7 +58,7 @@ const Content = ({ forms, profileData }) => {
       <div className="mb-3 rounded-full bg-empty w-[100px] h-[100px]">
         {profileData?.image && (
           <img
-            className="rounded-full w-full h-full"
+            className="rounded-full w-full h-full border border-info"
             alt="Profile Pic"
             src={
               profileData?.image.includes("http")
@@ -71,7 +71,7 @@ const Content = ({ forms, profileData }) => {
       <div className="mb-4 bg-empty rounded-lg p-1 w-[50%] max-w-[60%] min-h-[24px]">
         {profileData?.firstName} {profileData?.lastName}
       </div>
-      <div className=" bg-empty rounded-lg p-1 w-[50%] max-w-[60%] min-h-[24px]">
+      <div className="bg-empty rounded-lg p-1 w-full md:w-[50%] max-w-[60%] text-sm md:text-base min-h-[24px]">
         {profileData?.email}
       </div>
       <div className="w-[200px] mt-2 mb-4 flex flex-col gap-2 text-white rounded-lg">
