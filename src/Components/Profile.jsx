@@ -148,7 +148,7 @@ const [selectedImage, setSelectedImage] = useState(initialProfileData.image || "
               onClick={handleSubmit}
               className="bg-blue-400 p-2 rounded-lg mt-2 text-white"
             >
-              Submit
+              Save
             </button>
             { 
               errorAlert && 
